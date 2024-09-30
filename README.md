@@ -18,9 +18,3 @@ This repository includes:
 - Code snippets for various Java concepts
 - Completed exercises and challenges from the course
 
-## Getting Started
-
-To get started with the contents of this repository, clone it to your local machine using the following command:
-
-```bash
-git clone https://github.com/yourusername/java-bootcamp-notes.git
