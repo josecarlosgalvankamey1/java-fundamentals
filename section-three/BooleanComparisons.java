@@ -55,13 +55,13 @@ public class BooleanComparisons {
         String secondWord = "hello";
 
         System.out.println("Me: Are the two words the same?");
-        System.out.println("Java: " + "compare here" + "\n");
+        System.out.println("Java: " + (word.equals(secondWord)) + "\n");
 
         String thirdWord = "hello";
         String fourthWord = "goodbye";
 
         System.out.println("Me: Are the two words different");
-        System.out.println("Java: " + "compare here" + "\n");
+        System.out.println("Java: " + (!thirdWord.equals(fourthWord)) + "\n");
 
     }
 }
