@@ -6,6 +6,8 @@ public class TicTacToe {
 
   public static void main(String[] args) {
 
+    int win = -1;
+
     System.out.println("\nLet's play tic tac toe");
 
     // Task 1: Create an array with three rows of '_' characters.
@@ -36,6 +38,33 @@ public class TicTacToe {
      * }
      */
 
+    for (int i = 0; i < 9; ++i) {
+      if (i % 2 != 1) {
+        System.out.print("Turn X: ");
+        int[] userChose = askUser(board);
+        board[userChose[0]][userChose[1]] = 'X';
+        printBoard(board);
+      } else {
+        System.out.print("Turn O: ");
+        int[] userChose = askUser(board);
+        board[userChose[0]][userChose[1]] = 'O';
+        printBoard(board);
+      }
+
+      win = checkWin(board);
+      if (win == 3) {
+        System.out.println("X wins!");
+        break;
+      } else if (win == -3) {
+        System.out.println("O wins");
+        break;
+      }
+    }
+
+    if (win == -1) {
+      System.out.println("It's a tie!");
+    }
+
     scan.close();
   }
 
@@ -64,6 +93,7 @@ public class TicTacToe {
       System.out.println("\n");
     }
   }
+
   /**
    * Task 4 - Write a function that lets the user choose a spot
    * Function name – askUser
@@ -77,6 +107,28 @@ public class TicTacToe {
    *         3. Return the row and column in an int[] array.
    * 
    */
+  public static int[] askUser(char[][] board) {
+    int row = -1, column = -1;
+    System.out.print("Pick a row and a column number: ");
+    row = scan.nextInt();
+    column = scan.nextInt();
+
+    while (true) {
+      if (!(row >= 0 && row <= 2 && column >= 0 && column <= 2)) {
+        System.out.print("row or column not valid, try again: ");
+        row = scan.nextInt();
+        column = scan.nextInt();
+      } else if (board[row][column] != '_') {
+        System.out.print("Spot taken, try again: ");
+        row = scan.nextInt();
+        column = scan.nextInt();
+      } else {
+        break;
+      }
+    }
+
+    return new int[] { row, column };
+  }
 
   /**
    * Task 6 - Write a function that determines the winner
@@ -92,5 +144,95 @@ public class TicTacToe {
    *         4. Check the left diagonal for a straight X or straight O (Task 9).
    *         5. Check the right diagonal for a straight X or straight O (Task 10).
    */
+  public static int checkWin(char[][] board) {
+    int rows = checkRows(board);
+    if (rows == 3 || rows == -3)
+      return rows;
 
+    int columns = checkColumns(board);
+    if (columns == 3 || columns == -3)
+      return columns;
+
+    int leftDiagonal = checkLeftDiagonal(board);
+    if (leftDiagonal == 3 || leftDiagonal == -3)
+      return leftDiagonal;
+
+    int rightDiagonal = checkRightDiagonal(board);
+    if (rightDiagonal == 3 || rightDiagonal == -3)
+      return rightDiagonal;
+
+    return -1;
+  }
+
+  public static int checkRows(char[][] board) {
+    int count = 0;
+
+    for (int i = 0; i < board.length; ++i) {
+      for (int j = 0; j < board[i].length; ++j) {
+        if (board[i][j] == 'X')
+          ++count;
+        else if (board[i][j] == 'O')
+          --count;
+      }
+      if (count == 3 || count == -3)
+        return count;
+      else
+        count = 0;
+    }
+
+    return count;
+  }
+
+  public static int checkColumns(char[][] board) {
+    int count = 0;
+
+    for (int i = 0; i < board.length; ++i) {
+      for (int j = 0; j < board[i].length; ++j) {
+        if (board[j][i] == 'X')
+          ++count;
+        else if (board[j][i] == 'O')
+          --count;
+      }
+      if (count == 3 || count == -3)
+        return count;
+      else
+        count = 0;
+    }
+
+    return count;
+  }
+
+  public static int checkLeftDiagonal(char[][] board) {
+    int count = 0;
+
+    for (int i = 0; i < board.length; ++i) {
+      for (int j = 0; j < board[i].length; ++j) {
+        if (i == j && board[i][j] == 'X')
+          ++count;
+        else if (i == j && board[i][j] == 'O')
+          --count;
+      }
+      if (count == 3 || count == -3)
+        return count;
+
+    }
+
+    return count;
+  }
+
+  public static int checkRightDiagonal(char[][] board) {
+    int count = 0;
+
+    for (int i = 0; i < board.length; ++i) {
+      if (board[board.length - i - 1][i] == 'X')
+        ++count;
+      else if (board[board.length - i - 1][i] == 'O')
+        --count;
+
+      if (count == 3 || count == -3)
+        return count;
+    }
+
+    return count;
+  }
 }
