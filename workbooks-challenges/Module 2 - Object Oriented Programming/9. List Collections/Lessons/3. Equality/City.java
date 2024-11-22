@@ -1,8 +1,9 @@
+import java.util.Objects;
+
 public class City {
 
     private String name;
     private long population;
-
 
     public City(String name, long population) {
         this.name = name;
@@ -30,5 +31,19 @@ public class City {
         this.population = population;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof City))
+            return false;
 
+        City city = (City) obj;
+        return Objects.equals(this.name, city.name) && this.population == city.population;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name, this.population);
+    }
 }
