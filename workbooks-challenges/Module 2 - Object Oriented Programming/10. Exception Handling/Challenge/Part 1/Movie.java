@@ -1,5 +1,5 @@
 public class Movie {
-    
+
     private String name;
     private String format;
     private double rating;
@@ -21,16 +21,20 @@ public class Movie {
     }
 
     public void setName(String name) {
-        // TODO
+        if (name.isBlank() || name == null) {
+            throw new IllegalArgumentException("The name cannot be blank or null.");
+        }
         this.name = name;
     }
-    
+
     public String getFormat() {
         return format;
     }
 
     public void setFormat(String format) {
-        // TODO
+        if (format.isBlank() || format == null) {
+            throw new IllegalArgumentException("The format cannot be blank or null.");
+        }
         this.format = format;
     }
 
@@ -39,12 +43,14 @@ public class Movie {
     }
 
     public void setRating(double rating) {
-        // TODO
+        if (rating < 0 || rating > 10) {
+            throw new IllegalArgumentException("The rating cannot be less than 0 or greater than 10.");
+        }
         this.rating = rating;
     }
 
     public String toString() {
         return this.rating + "\t" + this.format + "\t\t" + this.name + "";
-    }    
+    }
 
 }
