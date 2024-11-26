@@ -3,10 +3,10 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        
+
         /************************** Hashcode ************************/
         Contact contact = new Contact("Alice", 30);
-        Contact contactCopy = contact;
+        Contact contactCopy = new Contact(contact);
 
         System.out.println("First Hashcode: " + contact.hashCode());
         System.out.println("Second Hashcode: " + contactCopy.hashCode());
@@ -18,7 +18,7 @@ public class Main {
         /************************** HashCode and Equals ************************/
 
         Map<Contact, String> peopleMap = new HashMap<>();
-        
+
         peopleMap.put(new Contact("Alice", 30), "1806 Farm Meadow Drive");
         peopleMap.put(new Contact("Bob", 35), "4046 Weekley Street");
         peopleMap.put(new Contact("Charles", 36), "1110 Cerullo Road");
@@ -38,7 +38,6 @@ public class Main {
         System.out.print("\nIs Noah, 41 years of age, in my contacts? ");
         String response = peopleMap.containsKey(new Contact("Noah", 41)) ? "Yes!" : "No, sorry";
         System.out.println(response);
-
 
     }
 }

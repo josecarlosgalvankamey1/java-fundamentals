@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Contact {
 
     private String name;
@@ -12,7 +14,6 @@ public class Contact {
         this.name = source.name;
         this.age = source.age;
     }
-
 
     public String getName() {
         return this.name;
@@ -30,5 +31,20 @@ public class Contact {
         this.age = age;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name, this.age);
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof Contact))
+            return false;
+
+        Contact contact = (Contact) (o);
+
+        return Objects.equals(this.name, contact.name) && age == contact.age;
+    }
 }
