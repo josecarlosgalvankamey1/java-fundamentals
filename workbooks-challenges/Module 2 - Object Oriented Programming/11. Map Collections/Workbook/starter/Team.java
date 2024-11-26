@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Map;
 
 public class Team {
@@ -6,26 +7,30 @@ public class Team {
     private Map<String, String> players;
 
     public Team(String name) {
-        // TODO
+        this.name = name;
+        players = new HashMap<>();
     }
-    
+
     public String getName() {
-        // TODO
-        return null;
+        return this.name;
     }
 
     public void setName(String name) {
-        // TODO
+        if (name.isBlank() || name == null) {
+            throw new IllegalArgumentException("The name cannot be null or blank.");
+        }
+        this.name = name;
     }
 
     public String getPlayer(String position) {
-        // TODO
-        return null;
+        if (position.isBlank() || position == null) {
+            throw new IllegalArgumentException("The position cannot be null or blank.");
+        }
+        return this.players.get(position);
     }
 
     public void setPlayer(String position, String player) {
-        // TODO
-    }    
+        this.players.put(position, player);
+    }
 
-    
 }
