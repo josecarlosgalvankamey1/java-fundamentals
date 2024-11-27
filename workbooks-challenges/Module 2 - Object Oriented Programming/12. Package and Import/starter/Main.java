@@ -1,7 +1,10 @@
+import model.Game;
+import model.Team;
+
 public class Main {
 
     public static void main(String[] args) {
-        
+
         Team bulls = new Team("Chicago Bulls");
         bulls.setPlayer("SHOOTING_GUARD", "Michael Jordan");
         bulls.setPlayer("SMALL_FORWARD", "Scottie Pippen");
