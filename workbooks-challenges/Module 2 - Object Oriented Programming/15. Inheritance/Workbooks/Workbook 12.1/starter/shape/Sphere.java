@@ -1,6 +1,6 @@
 package shape;
 
-public class Sphere {
+public class Sphere extends Shape {
 
     private double radius;
 
@@ -11,6 +11,5 @@ public class Sphere {
     public void setRadius(double radius) {
         this.radius = radius;
     }
-
 
 }
