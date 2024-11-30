@@ -10,13 +10,19 @@ public class Microscope extends LabEquipment {
         setMagnification(magnification);
     }
 
+    public Microscope(Microscope source) {
+        super(source.getManufacturer(), source.getModel(), source.getYear());
+        setMagnification(source.magnification);
+    }
+
     public int getMagnification() {
         return magnification;
     }
 
     public void setMagnification(int magnification) {
         if (magnification < MIN_MAGNIFICATION) {
-            throw new IllegalArgumentException("Magnification must be greater than or equal to the minimum magnification.");
+            throw new IllegalArgumentException(
+                    "Magnification must be greater than or equal to the minimum magnification.");
         }
         this.magnification = magnification;
     }
@@ -24,5 +30,10 @@ public class Microscope extends LabEquipment {
     @Override
     public String performMaintenance() {
         return "Microscope maintenance: Clean the lenses and check the light source.";
+    }
+
+    @Override
+    public LabEquipment clone() {
+        return new Microscope(this.getManufacturer(), this.getModel(), this.getYear(), this.getMagnification());
     }
 }
