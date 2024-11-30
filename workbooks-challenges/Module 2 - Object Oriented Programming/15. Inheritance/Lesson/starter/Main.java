@@ -18,6 +18,8 @@ public class Main {
 
         pantStore(pants);
         shirtStore(shirt);
+
+        System.out.println(shirt);
     }
 
     public static void productStore(Product product) {
