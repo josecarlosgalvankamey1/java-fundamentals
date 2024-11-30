@@ -21,4 +21,19 @@ public class Shirt extends Product {
         this.size = size;
     }
 
+    @Override
+    public void fold() {
+        super.fold();
+        System.out.println("\nLay shirt on a flat surface");
+        System.out.println("\nFold the shirt sideways");
+        System.out.println("\nBring sleeves in");
+        System.out.println("\nFold from bottom up");
+        System.out.println("=====================================================");
+    }
+
+    @Override
+    public void wear() {
+        System.out.println("The " + this.size + " shirt suits you well!");
+    }
+
 }

@@ -25,6 +25,7 @@ public class Main {
                 "\nThank you for purchasing the " + product.getBrand() + " " + product.getClass().getSimpleName()
                         + " Your total comes to "
                         + product.getPrice());
+        product.wear();
     }
 
     public static void pantStore(Pants pants) {

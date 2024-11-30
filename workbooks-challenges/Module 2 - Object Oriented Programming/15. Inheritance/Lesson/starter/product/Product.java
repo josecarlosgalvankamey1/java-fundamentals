@@ -1,6 +1,6 @@
 package product;
 
-public class Product {
+public abstract class Product {
     private double price;
     private String color;
     private String brand;
@@ -38,4 +38,6 @@ public class Product {
     public void fold() {
         System.out.println("\nFolding my " + this.getBrand() + " " + this.getClass().getSimpleName());
     }
+
+    public abstract void wear();
 }
