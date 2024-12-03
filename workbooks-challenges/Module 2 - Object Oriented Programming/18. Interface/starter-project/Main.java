@@ -25,5 +25,14 @@ public class Main {
                 new Credit("A1534B", new BigDecimal("0.50")),
                 new Credit("G4567H", new BigDecimal("200.00")));
 
+        accounts.forEach(account -> {
+            if (account instanceof Credit) {
+                creditService.createAccount((Credit) account);
+            } else {
+                checkingService.createAccount((Checking) account);
+            }
+        });
+
+        Account account = repository.retrieveAccount("A1234B");
     }
 }
